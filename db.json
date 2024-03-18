@@ -1,0 +1,9 @@
+{
+    "students": [
+        {   
+            "id": 1,
+            "name" : "Christopher wijaya",
+            "address": "Jl. Sisingamaraja no 1"
+        }
+    ]
+}

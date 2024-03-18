@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h5 class="modal-title">Edit Students</h5>
+  <button type="button" class="btn-close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="editForm">
+    <div class="row">
+      <div class="col-12 my-2">
+        <label>Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          formControlName="name"
+          [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+        />
+        <div class="invalid-feedback" *ngIf="submitted && f['name'].errors">
+          <div *ngIf="submitted && f['name'].errors['required']">
+            Name is Required
+          </div>
+        </div>
+      </div>
+      <div class="col-12 my-2">
+        <label>Address</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Address"
+          formControlName="address"
+          [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"
+        />
+        <div class="invalid-feedback" *ngIf="submitted && f['address'].errors">
+          <div *ngIf="submitted && f['address'].errors['required']">
+            Address is Required
+          </div>
+        </div>
+      </div>
+      <div class="col-12 my-2">
+        <label>Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Phone Number"
+          formControlName="phone"
+          [ngClass]="{ 'is-invalid': submitted && f['phone'].errors }"
+        />
+        <div class="invalid-feedback" *ngIf="submitted && f['phone'].errors">
+          <div *ngIf="submitted && f['phone'].errors['required']">
+            Phone Number is Required
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="editData()">
+    Save changes
+  </button>
+</div>
