@@ -49,13 +49,13 @@ Global_Confirm(data: Confirm, icon: any = '', title: string = '', text: string =
         icon: icon,
         showCancelButton: true,
         reverseButtons: true,
-        confirmButtonColor: '#7367F0',
-        cancelButtonColor: '#E42728',
+        confirmButtonColor: '#D53343',
+        cancelButtonColor: '#5E656D',
         confirmButtonText: confirmText,
         cancelButtonText: cancelText,
         customClass: {
-            confirmButton: 'btn btn-primary',
-            cancelButton: 'btn btn-danger ml-1'
+            confirmButton: 'btn btn-danger',
+            cancelButton: 'btn btn-secondary ml-1'
         }
     })
 }

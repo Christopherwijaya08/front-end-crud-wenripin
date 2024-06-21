@@ -14,6 +14,7 @@ import { ModalStudentComponent } from '../../components/modal-student/modal-stud
 import { AlertService } from 'src/shared/services/alert/alert.service';
 import { Subject, takeUntil } from 'rxjs';
 import { SortChange } from 'src/shared/models/sort.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-crud-data',
@@ -27,6 +28,10 @@ export class StudentCrudDataComponent implements OnInit {
   public pageSize: FormControl = new FormControl(5);
   public pageSizeOptions = [5, 10, 25, 50, 100];
 
+  public items = [
+    'active', 'non-active'
+  ]
+
   private _unsubAll: Subject <any> = new Subject();
 
   constructor(
@@ -34,10 +39,10 @@ export class StudentCrudDataComponent implements OnInit {
     private _http: HttpClient,
     public _studentService: StudentCrudDataService,
     private _modalService: NgbModal,
-    private _alertService: AlertService
+    private _alertService: AlertService,
+    private _router: Router
   ) {
     this.form = this._fb.group(new StudentModel());
-
     this.addValidators();
   }
 
@@ -45,6 +50,7 @@ export class StudentCrudDataComponent implements OnInit {
     this.f['name'].addValidators([Validators.required]);
     this.f['address'].addValidators([Validators.required]);
     this.f['phone'].addValidators([Validators.required]);
+    this.f['studentStatus'].addValidators([Validators.required]);
   }
 
   ngOnInit(): void {
@@ -89,7 +95,9 @@ export class StudentCrudDataComponent implements OnInit {
     return true;
   }
 
-  
+  logout(){
+    this._router.navigateByUrl('login');
+  }
 
   async save() {
     if (this.checkForm()) {
