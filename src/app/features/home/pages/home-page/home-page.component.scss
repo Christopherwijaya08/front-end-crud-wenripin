@@ -1,0 +1,28 @@
+.note-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.note-box.clicked {
+    background-color: #f8f9fa;
+}
+
+.note-title {
+    font-weight: bold;
+}
+
+.note-created {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.no-focus:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.bold-text {
+    font-weight: bold;
+}

@@ -1,6 +1,104 @@
-<b style="display: flex; justify-content: center">Welcome {{ username }}</b>
+<!-- <b style="display: flex; justify-content: center">Welcome {{ username }}</b>
 <div class="row mt-1">
     <div class="col-12 d-flex justify-content-center">
         <button type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
     </div>
+</div> -->
+<div class="row">
+  <div class="col-md-2 pr-0">
+    <div class="card">
+      <div class="card-header">
+        <b>{{ username }}</b>
+        <div class="row mt-3">
+          <button type="button" class="btn btn-success" (click)="addNote()" rippleEffect>
+            <i class="fa fa-plus-square"></i> Note
+          </button>
+        </div>
+      </div>
+      <div class="card-body" style="height: 30rem"></div>
+      <div class="card-footer">
+        <div class="row">
+          <button type="button" class="btn btn-danger" (click)="logout()">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 pl-0">
+    <div class="card">
+      <div class="card-header" style="height: 5.87rem">
+        <b style="font-size: 20px">Notes</b>
+        <p class="text-muted" style="font-size: 14px">14 notes</p>
+      </div>
+      <div class="card-body">
+        <div class="row" *ngFor="let note of notes; let idx = index">
+          <div class="col-md-12">
+            <div
+              class="note-box"
+              (click)="toggleNoteClick(note,idx)"
+              [ngClass]="{ clicked: note.clicked }"
+            >
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="note-title mb-0">{{ note.title }}</p>
+                  <p class="note-created mb-0">{{ note.created_by }}</p>
+                  <p class="note-created mb-0">{{ note.created_at | date: 'dd MMMM yyyy' }}</p>
+                </div>
+                <div
+                  class="col-md-6 d-flex justify-content-end align-items-center"
+                >
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-icon"
+                    *ngIf="note.clicked"
+                    (click)="deleteNote(note.id, $event)"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 pl-0">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn btn-success" (click)="save()" *ngIf="addMode">Save</button>
+            <button type="button" class="btn btn-success" (click)="update()" *ngIf="editMode">Update</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control no-focus"
+              id="noteTitle"
+              placeholder="Title"
+              style="border: none"
+              formControlName="title"
+            />
+          </div>
+          <div class="form-group">
+            <textarea
+              class="form-control no-focus"
+              id="noteContent"
+              rows="19"
+              name="content"
+              placeholder="Start writing, drag files or start from a template"
+              style="border: none"
+              formControlName="content"
+            ></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

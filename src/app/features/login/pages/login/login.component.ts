@@ -42,6 +42,10 @@ export class LoginComponent {
     return this.form.controls;
   }
 
+  register(){
+    this._router.navigateByUrl('register');
+  }
+
   async login() {
     this.submitted = true;
     if (this.form.invalid) {
